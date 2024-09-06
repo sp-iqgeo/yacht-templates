@@ -1,0 +1,35 @@
+services:
+    patch:
+        image: iqgeoproddev.azurecr.io/test/platform-appserver:7.2.0-${patch}
+        container_name: ${PATCH_NUMBER}
+        restart: always
+        depends_on:
+            - postgis13
+        environment:
+            ALLOW_HTTP: 'YES' # only for local testing. do not include in production or exposed environments!
+            WSGI_PROCESSES: 2
+            WSGI_THREADS: 4
+            PGHOST: postgis13
+            PGPORT: 5432
+            PGUSER: iqgeo
+            PGPASSWORD: iqgeo
+            MYW_DB_NAME: ${PATCH_NUMBER}-db
+            MYW_DB_HOST: postgis13
+            MYW_DB_PORT: 5432
+            MYW_DB_USERNAME: iqgeo
+            MYW_DB_PASSWORD: iqgeo
+            IQGEO_HOST: ${PATCH_NUMBER}.${HOST_DOMAIN}
+            MYW_EXT_BASE_URL: http://${PATCH_NUMBER}.${HOST_DOMAIN}
+        labels:
+          - "traefik.enable=true"
+          - "traefik.http.routers.${PATCH_NUMBER}.entrypoints=websecure"
+          - "traefik.http.routers.${PATCH_NUMBER}.rule=Host(`${PATCH_NUMBER}.${HOST_DOMAIN}`)"
+          - "traefik.http.services.${PATCH_NUMBER}.loadbalancer.server.port=8080"
+          - "traefik.http.routers.${PATCH_NUMBER}.tls=true"
+        volumes:
+          - ${PATCH_NUMBER}_extracts:/opt/iqgeo/data/extracts
+          - ${PATCH_NUMBER}_sync:/opt/iqgeo/data/sync
+
+volumes:
+    ${PATCH_NUMBER}_extracts:
+    ${PATCH_NUMBER}_sync:
