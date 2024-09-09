@@ -13,8 +13,72 @@
         "80:8080/tcp"
       ],
       "volumes": [
+        {
+          "container": "${PATCH_NUMBER}_extracts",
+          "bind": "/opt/iqgeo/data/extracts"
+        },
+        {
+          "container": "${PATCH_NUMBER}_sync",
+          "bind": "/opt/iqgeo/data/sync"
+        }        
       ],
       "env": [
+        {
+          "name": "ALLOW_HTTP",
+          "default": "YES"
+        },
+        {
+          "name": "WSGI_PROCESSES",
+          "default": "2"
+        },
+        {
+          "name": "WSGI_THREADS",
+          "default": "4"
+        },
+        {
+          "name": "PGHOST",
+          "default": "postgis13"
+        },
+        {
+          "name": "PGPORT",
+          "default": "5432"
+        },
+        {
+          "name": "PGUSER",
+          "default": "iqgeo"
+        }, 
+        {
+          "name": "PGPASSWORD",
+          "default": "iqgeo"
+        },  
+        {
+          "name": "MYW_DB_NAME",
+          "default": "${PATCH_NUMBER}-db"
+        },                                         
+        {
+          "name": "MYW_DB_HOST",
+          "default": "${PATCH_NUMBER}-db"
+        }, 
+        {
+          "name": "MYW_DB_PORT",
+          "default": "5432"
+        },     
+        {
+          "name": "MYW_DB_USERNAME",
+          "default": "iqgeo"
+        },  
+        {
+          "name": "MYW_DB_PASSWORD",
+          "default": "iqgeo"
+        },   
+        {
+          "name": "IQGEO_HOST",
+          "default": "${PATCH_NUMBER}.${HOST_DOMAIN}"
+        },  
+        {
+          "name": "MYW_EXT_BASE_URL",
+          "default": "http://${PATCH_NUMBER}.${HOST_DOMAIN}"
+        }                
       ]
     }
 ] 
