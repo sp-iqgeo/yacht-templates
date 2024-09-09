@@ -25,59 +25,87 @@
       "env": [
         {
           "name": "ALLOW_HTTP",
-          "default": "YES"
+          "default": "YES",
+          "description": "",
+          "label": ""                    
         },
         {
           "name": "WSGI_PROCESSES",
-          "default": "2"
+          "default": "2",
+          "description": "",
+          "label": ""       
         },
         {
           "name": "WSGI_THREADS",
-          "default": "4"
+          "default": "4",
+          "description": "",
+          "label": "" 
         },
         {
           "name": "PGHOST",
-          "default": "postgis13"
+          "default": "postgis13",
+          "description": "",
+          "label": "" 
         },
         {
           "name": "PGPORT",
-          "default": "5432"
+          "default": "5432",
+          "description": "",
+          "label": "" 
         },
         {
           "name": "PGUSER",
-          "default": "iqgeo"
+          "default": "iqgeo",
+          "description": "",
+          "label": "" 
         }, 
         {
           "name": "PGPASSWORD",
-          "default": "iqgeo"
+          "default": "iqgeo",
+          "description": "",
+          "label": "" 
         },  
         {
           "name": "MYW_DB_NAME",
-          "default": "${PATCH_NUMBER}-db"
+          "default": "${PATCH_NUMBER}-db",
+          "description": "",
+          "label": "" 
         },                                         
         {
           "name": "MYW_DB_HOST",
-          "default": "${PATCH_NUMBER}-db"
+          "default": "${PATCH_NUMBER}-db",
+          "description": "",
+          "label": "" 
         }, 
         {
           "name": "MYW_DB_PORT",
-          "default": "5432"
+          "default": "5432",
+          "description": "",
+          "label": "" 
         },     
         {
           "name": "MYW_DB_USERNAME",
-          "default": "iqgeo"
+          "default": "iqgeo",
+          "description": "",
+          "label": "" 
         },  
         {
           "name": "MYW_DB_PASSWORD",
-          "default": "iqgeo"
+          "default": "iqgeo",
+          "description": "",
+          "label": "" 
         },   
         {
           "name": "IQGEO_HOST",
-          "default": "${PATCH_NUMBER}.${HOST_DOMAIN}"
+          "default": "${PATCH_NUMBER}.${HOST_DOMAIN}",
+          "description": "",
+          "label": "" 
         },  
         {
           "name": "MYW_EXT_BASE_URL",
-          "default": "http://${PATCH_NUMBER}.${HOST_DOMAIN}"
+          "default": "http://${PATCH_NUMBER}.${HOST_DOMAIN}",
+          "description": "",
+          "label": "" 
         }                
       ]
     }
