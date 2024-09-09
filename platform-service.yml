@@ -1,37 +1,57 @@
----
-type: 1
-title: App Title
-name: container-name
-description: This is a description.
-logo: https://raw.githubusercontent.com/SelfhostedPro/selfhosted_templates/master/Images/transmission-icon.png
-image: dev/application:latest
-note: This is a note
-categories:
-- Other
-- Tools
-platform: linux
-restart_policy: unless-stopped
-ports:
-- 9091:9091/tcp
-- 9090:9090/tcp
-network_mode: bridge
-volumes:
-- container: "/data"
-  bind: "!downloads"
-- container: "/etc/localtime"
-  bind: "!localtime"
-sysctls:
-- net.ipv6.conf.all.disable_ipv6: '0'
-cap_add:
-- NET_ADMIN
-env:
-- name: PUID
-  label: PUID
-  default: '1000'
-- name: PGID
-  label: PGID
-  default: '1000'
-- name: EnvWithDescription
-  label: EnvWithDescription
-  description: This is a description
-  default: default
+[
+    {
+      "type": 1,
+      "title": "Phpmyadmin",
+      "name": "Phpmyadmin",
+      "description": "Phpmyadmin is a free software tool written in PHP, intended to handle the administration of MySQL over the Web. phpMyAdmin supports a wide range of operations on MySQL and MariaDB.",
+      "logo": "https://raw.githubusercontent.com/linuxserver/docker-templates/master/linuxserver.io/img/phpmyadmin-logo.png",
+      "image": "lscr.io/linuxserver/phpmyadmin:latest",
+      "note": "Yacht App Templates by <a href='https://github.com/SelfhostedPro' target='_blank'>SelfhostedPro</a> based on data provided by <a href='https://www.linuxserver.io' target='_blank'>LinuxServer.io</a>.</p>",
+      "categories": [
+        "System Tools"
+      ],
+      "platform": "linux",
+      "restart_policy": "unless-stopped",
+      "ports": [
+        "80:8306/tcp"
+      ],
+      "volumes": [
+        {
+          "container": "/config",
+          "bind": "!config/phpmyadmin/config"
+        }
+      ],
+      "env": [
+        {
+          "name": "PUID",
+          "label": "PUID",
+          "default": "!PUID",
+          "description": "for UserID"
+        },
+        {
+          "name": "PGID",
+          "label": "PGID",
+          "default": "!PGID",
+          "description": "for GroupID"
+        },
+        {
+          "name": "TZ",
+          "label": "TZ",
+          "default": "!TZ",
+          "description": "Specify a timezone to use for example Europe/Amsterdam"
+        },
+        {
+          "name": "PMA_ARBITRARY",
+          "label": "PMA_ARBITRARY",
+          "default": "1",
+          "description": "Set to `1` to allow you to connect to any server. Setting to `0` will only allow you to connect to specified hosts (See Application Setup)"
+        },
+        {
+          "name": "PMA_ABSOLUTE_URI",
+          "label": "PMA_ABSOLUTE_URI",
+          "default": "https://phpmyadmin.yourdomain.tld",
+          "description": "Set the URL you will use to access the web frontend"
+        }
+      ]
+    }
+] 
